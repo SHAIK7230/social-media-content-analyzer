@@ -69,15 +69,11 @@ except ImportError:
     PYTESSERACT_AVAILABLE = False
 
 try:
-    import google.generativeai as genai
+    from google import genai
     GEMINI_AVAILABLE = True
 except ImportError:
-    try:
-        from google import genai
-        GEMINI_AVAILABLE = True
-    except ImportError:
-        genai = None
-        GEMINI_AVAILABLE = False
+    genai = None
+    GEMINI_AVAILABLE = False
 
 
 # -----------------------------------------------------------------------------
@@ -515,44 +511,26 @@ Post Caption to Analyze:
 
     last_error = ""
 
-    if not genai:
-        return {"error": "Google Gemini SDK is not installed."}
+    if not genai or not hasattr(genai, "Client"):
+        return {"error": "Official google-genai SDK is not installed."}
 
-    # Direct google.generativeai API call with model fallback
-    if hasattr(genai, "configure") and hasattr(genai, "GenerativeModel"):
-        try:
-            genai.configure(api_key=api_key)
-            for model_name in candidate_models:
-                try:
-                    model = genai.GenerativeModel(model_name)
-                    response = model.generate_content(prompt)
-                    if response and hasattr(response, "text") and response.text:
-                        return {"content": response.text}
-                except Exception as model_err:
-                    last_error = str(model_err)
-                    continue
-        except Exception as err:
-            last_error = str(err)
+    try:
+        client = genai.Client(api_key=api_key)
+        for model_name in candidate_models:
+            try:
+                response = client.models.generate_content(
+                    model=model_name,
+                    contents=prompt
+                )
+                if response and hasattr(response, "text") and response.text:
+                    return {"content": response.text}
+            except Exception as model_err:
+                last_error = str(model_err)
+                continue
+    except Exception as err:
+        last_error = str(err)
 
-    # Fallback to google.genai Client if available
-    if hasattr(genai, "Client"):
-        try:
-            client = genai.Client(api_key=api_key)
-            for model_name in candidate_models:
-                try:
-                    response = client.models.generate_content(
-                        model=model_name,
-                        contents=prompt
-                    )
-                    if response and hasattr(response, "text") and response.text:
-                        return {"content": response.text}
-                except Exception as model_err:
-                    last_error = str(model_err)
-                    continue
-        except Exception as err:
-            last_error = str(err)
-
-    return {"error": f"Gemini API execution failed after trying fallback models: {last_error}"}
+    return {"error": f"Gemini API execution failed: {last_error}"}
 
 
 # -----------------------------------------------------------------------------
