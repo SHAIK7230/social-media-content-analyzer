@@ -9,7 +9,7 @@ An end-to-end, production-ready web application built with **Streamlit**, **PyMu
 ## 🔗 Live Application Demo
 
 - **Hosted Application URL**: [Live Demo Link](https://your-app-name.streamlit.app) *(Replace with live deployed URL)*
-- **GitHub Repository**: [GitHub Repository Link](https://github.com/your-username/social-media-content-analyzer)
+- **GitHub Repository**: [https://github.com/SHAIK7230/social-media-content-analyzer.git](https://github.com/SHAIK7230/social-media-content-analyzer.git)
 
 ---
 
