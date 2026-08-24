@@ -1,0 +1,16 @@
+__pycache__/
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+env/
+.vscode/
+.idea/
+.streamlit/secrets.toml
+*.py[cod]
+*$py.class
+dist/
+build/
+*.egg-info/
+.pytest_cache/
