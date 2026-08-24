@@ -1,14 +1,14 @@
 # Social Media Content Analyzer 🚀
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://social-media-content-analyzer-shaik.streamlit.app/)
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://your-app-name.streamlit.app)
+- **Hosted Application URL:** [Live Demo](https://social-media-content-analyzer-shaik.streamlit.app/)
 
 An end-to-end, production-ready web application built with **Streamlit**, **PyMuPDF**, **Tesseract OCR**, and **Google Gemini AI** (`google-genai`) for analyzing social media content drafts, extracting post text, evaluating engagement potential, and generating actionable optimizations.
 
 ---
 
 ## 🔗 Live Application Demo
-
-- **Hosted Application URL**: [Live Demo Link](https://your-app-name.streamlit.app) *(Replace with live deployed URL)*
+-**Hosted Application URL:** [Live Demo](https://social-media-content-analyzer-shaik.streamlit.app/)
 - **GitHub Repository**: [https://github.com/SHAIK7230/social-media-content-analyzer.git](https://github.com/SHAIK7230/social-media-content-analyzer.git)
 
 ---
